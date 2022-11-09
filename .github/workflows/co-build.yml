@@ -6,10 +6,12 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     container: python:3.9-slim
+
     services:
       postgres:
         image: postgres:alpine
@@ -23,10 +25,11 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip wheel
